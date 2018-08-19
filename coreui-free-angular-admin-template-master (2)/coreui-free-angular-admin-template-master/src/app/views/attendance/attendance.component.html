@@ -1,0 +1,174 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12">
+        
+
+      <div class="card">
+        <div class="card-header">
+          <i class="fa fa-align-justify"></i>Attendance List
+        </div>
+        <div class="card-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Student Name</th>
+                <th>Roll Number</th>
+                <th>Batch Name</th>
+                <th>Mark Absence</th>  
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Himanshu</td>
+                <td>113</td>
+                <td>XII_B</td>
+                <td>
+                  <label class="switch switch-label switch-pill switch-danger">
+                    <input type="checkbox" class="switch-input" checked>
+                    <span class="switch-slider" data-checked="&#x2713;" data-unchecked="&#x2715;"></span>
+                  </label>
+                </td>
+
+              </tr>
+            </tbody>
+
+            <tbody>
+              <tr>
+                <td>Pratik</td>
+                <td>114</td>
+                <td>XII_B</td>
+                <td>
+                  <label class="switch switch-label switch-pill switch-danger">
+                    <input type="checkbox" class="switch-input" checked>
+                    <span class="switch-slider" data-checked="&#x2713;" data-unchecked="&#x2715;"></span>
+                  </label>
+                </td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <td>Ankur</td>
+                <td>116</td>
+                <td>XII_B</td>
+                <td>
+                  <label class="switch switch-label switch-pill switch-danger">
+                    <input type="checkbox" class="switch-input" checked>
+                    <span class="switch-slider" data-checked="&#x2713;" data-unchecked="&#x2715;"></span>
+                  </label>
+                </td>
+              </tr>
+            </tbody>
+
+             <tbody> 
+            <tr *ngFor ="let student of students">
+              <td>{{student.firstname}}</td>
+              <td>{{student.rollNo}}</td>
+              <td>{{student.batchName}}</td>
+              <td>{{student.attendance}}</td>
+
+              <td> <label class="switch switch-label switch-pill switch-danger">
+                <input type="checkbox" class="switch-input" checked>
+                <span class="switch-slider" data-checked="&#x2713;" data-unchecked="&#x2715;"></span>
+              </label> </td> 
+
+            <!-- <td><button type="Submit" (click)="updateAdmin()">edit</mat-icon></td>
+              <td> <button type="Submit" (click)="deleteAdmin()">delete</mat-icon></td> -->
+            </tr> 
+          </tbody>
+          </table>
+
+          <button type="button" class="btn btn-primary" data-toggle="modal" (click)="myModal.show()">
+            Save Attendance
+           </button>
+
+           <form [formGroup]="attendanceform" (ngSubmit) = "createAttendance()">
+           <div bsModal #myModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title">Select Date & Subject</h4>
+                  <button type="button" class="close" (click)="myModal.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+
+            
+
+                <div class="modal-body">
+                  <!-- <p>Form will go here...</p> -->
+                  
+                  <div class="Style2" *ngIf="isSubmitted"><span>Your form has been submitted Successfully! </span></div>
+
+                  <div>
+                    <main class="main d-flex align-items-center">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-md-12 mx-auto">
+                            <div class="card mx-auto" style="margin-bottom:0%">
+                              <div class="card-body p-3">
+                              
+                                <div class="input-group mb-3">
+                                  <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-book fa-lg mt-3"></i></span>
+                                  </div>
+                                  <div class="form-group col-sm-23">
+                                    <select class="form-control"  formControlName="subject">
+                                      <option>Mathematics</option>
+                                      <option>Physics</option>
+                                      <option>Chemistry</option>
+                                      <option>Commerce</option>
+                                      <option>English</option>
+                                      <option>Banking</option>
+                                    </select>
+                                    </div>
+                                  </div>
+             
+                                <div class="input-group mb-3">
+                                  <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="cui-calendar icons font-2xl d-block mt-2"></i></span>
+                                  </div>
+                                  <input type="text" class="form-control" placeholder="DD/MM/YY" formControlName="date">
+                                </div>
+
+                              
+
+                                <!-- <button type="button" class="btn btn-block btn-success">Create Account</button> -->
+                  
+                              <!-- <div class="card-footer p-4">
+                                <div class="row">
+                                  <div class="col-6">
+                                    <button class="btn btn-block btn-facebook" type="button"><span>facebook</span></button>
+                                  </div>
+                                  <div class="col-6">
+                                    <button class="btn btn-block btn-twitter" type="button"><span>twitter</span></button>
+                                  </div>
+                                </div>
+                              </div> -->
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      </div>
+                    </main>
+                  </div>
+                 
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" (click)="myModal.hide()">Close</button>
+                  <button type="submit" class="btn btn-primary" [disabled]="adminform.invalid"  (click)= "!isauthentication ? myModal.hide() : ''" >Save</button>
+                </div>
+
+               
+              </div>
+              <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+          </div>
+        </form>
+        </div>
+        </div>
+      </div>
+      </div>
+      </div>
+    
+      

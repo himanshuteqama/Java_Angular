@@ -1,0 +1,108 @@
+<div bsModal #lgModal="bs-modal" [config]="{backdrop: 'static'}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title pull-left">{{title}}</h2>
+        <button type="button" class="close pull-right" (click)="lgModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- <p>{{admin.email}}</p> -->
+
+        <form [formGroup]="editform" (ngSubmit) = "updateStudent()">
+          <div>
+            <main class="main d-flex align-items-center">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-12 mx-auto">
+                    <div class="card mx-auto" style="margin-bottom:0%">
+                      <div class="card-body p-3">
+                        <h5>Update Student Details</h5>
+                        <!-- <p class="text-muted">Create New faculty</p> -->
+                        
+
+                        <!-- validation Alert -->
+                     
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="icon-pencil"></i></span>
+                          </div>
+                          <input type="text" class="form-control" placeholder="RollNo" [(ngModel)]="student.rollNo" formControlName="rollNo">
+                        </div>
+                      
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="icon-user"></i></span>
+                          </div>
+                          <input type="text" class="form-control" placeholder="Firstname" [(ngModel)]="student.firstName" formControlName="firstName">
+                         </div>
+                        
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text"><i class="icon-user"></i></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Lastname" [(ngModel)]="student.lastName" formControlName="lastName">
+                          </div>
+
+                              <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="icon-user"></i></span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Parents Name" [(ngModel)]="student.parentsName" formControlName="parentsName">
+                               </div>
+
+                          <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="icon-phone"></i></span>
+                              </div>
+                              <input type="text" class="form-control" placeholder="Mobile" [(ngModel)]="student.mobile" formControlName="mobile">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="icon-phone"></i></span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="ParentsNo" [(ngModel)]="student.parentsNo" formControlName="parentsNo">
+                              </div>
+
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">@</span>
+                          </div>
+                          <input type="text" class="form-control" placeholder="Email" [(ngModel)]="student.email" formControlName="email">
+                        </div>
+
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="icon-chemistry"></i></span>
+                          </div>
+                          <input type="text" class="form-control" placeholder="School" [(ngModel)]="student.school" formControlName="school">
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text"><i class="icon-people"></i></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Batch" [(ngModel)]="student.batchName"formControlName="batchName">
+                          </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+            </main>
+          </div>
+          </form>
+  
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="lgModal.hide()">Close</button>
+        <button type="submit" class="btn btn-primary" [disabled]="adminform.invalid"  (click)= "!isauthentication ? lgModal.hide() : ''" >Update</button>
+      </div>
+     </div>
+   </div>
+ </div>

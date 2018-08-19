@@ -1,0 +1,181 @@
+<div class="animated fadeIn">
+<div class="col-lg-14">
+    <button type="button" class="btn btn-primary" data-toggle="modal" (click)="myModal.show()">
+        Add Batch
+      </button>
+  <div class="card">
+    <div class="card-header">
+      Batches
+    </div>
+    <div class="card-body">
+      <table class="table table-striped" [mfData]="batches" #mf="mfDataTable" [mfRowsOnPage]="5">
+        <thead>
+          <tr>
+    
+            <th>
+                <mfDefaultSorter by="batchName">Batch</mfDefaultSorter></th>
+            <th>
+                <mfDefaultSorter by="class">Class</mfDefaultSorter></th>
+            <th>
+                <mfDefaultSorter by="subject">Subject</mfDefaultSorter></th>
+            <th>Operations</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>A1</td>
+            <td>XIIth</td>
+            <td>
+                Chemistry
+            </td>
+            <td><i (click)="getBatchForEdit(batch)" class="fa fa-pencil" style="cursor: pointer;font-size:17px;color:#20a8d8"></i>&nbsp;&nbsp;
+              <i (click)="deleteAdmin($event,admin)" class="fa fa-remove" style="cursor: pointer;font-size:20px;color:#f86c6b"></i></td> 
+  
+          </tr>
+          <tr>
+            <td>A2</td>
+            <td>XIth</td>
+        
+            <td>
+                Physics
+            </td>
+            <td>  <i (click)="getBatchForEdit(batch)" class="fa fa-pencil" style="cursor: pointer;font-size:17px;color:#20a8d8"></i>&nbsp;&nbsp;
+              <i (click)="deleteAdmin($event,admin)" class="fa fa-remove" style="cursor: pointer;font-size:20px;color:#f86c6b"></i></td> 
+  
+          </tr>
+          <tr>
+            <td>A3</td>
+            <td> Xth</td>
+      
+            <td>
+                Mathematics
+            </td>
+            <td><i (click)="getBatchForEdit(batch)" class="fa fa-pencil" style="cursor: pointer;font-size:17px;color:#20a8d8"></i>&nbsp;&nbsp;
+              <i (click)="deleteAdmin($event,admin)" class="fa fa-remove" style="cursor: pointer;font-size:20px;color:#f86c6b"></i></td> 
+  
+          </tr>
+          <tr>
+            <td>B1</td>
+            <td>IXth</td>
+      
+            <td>
+                Biology
+            </td>
+            <td><i (click)="getBatchForEdit(batch)" class="fa fa-pencil" style="cursor: pointer;font-size:17px;color:#20a8d8"></i>&nbsp;&nbsp;
+              <i (click)="deleteAdmin($event,admin)" class="fa fa-remove" style="cursor: pointer;font-size:20px;color:#f86c6b"></i></td> 
+  
+          </tr>
+        </tbody>
+
+        <tbody>
+          <tr *ngFor ="let batch of batches">
+            <td>{{batch.batchName}}</td>
+            <td>{{batch.class}}</td>
+            <td>{{batch.subject}}</td>
+
+            <td><i (click)="getBatchForEdit(batch)" class="fa fa-pencil" style="cursor: pointer;font-size:17px;color:#20a8d8"></i>&nbsp;&nbsp;
+              <i (click)="deleteAdmin($event,admin)" class="fa fa-remove" style="cursor: pointer;font-size:20px;color:#f86c6b"></i></td> 
+
+          <!-- <td><button type="Submit" (click)="updateAdmin()">edit</mat-icon></td>
+            <td> <button type="Submit" (click)="deleteAdmin()">delete</mat-icon></td> -->
+          </tr> 
+        </tbody>
+        <tfoot>
+            <tr>
+              <td colspan="4" style="float:initial">
+                <mfBootstrapPaginator [rowsOnPageSet]="[1,5,10]"></mfBootstrapPaginator>
+              </td>
+            </tr>
+          </tfoot>
+      </table>
+
+      <batch-modal></batch-modal>
+      <div bsModal #myModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Add Batch</h4>
+              <button type="button" class="close" (click)="myModal.hide()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
+            <!-- put your component here -->
+
+            <div class="modal-body">
+              <!-- <p>Form will go here...</p> -->
+              <form [formGroup]="batchform" (ngSubmit) = "createBatch()">
+              <div class="Style2" *ngIf="isSubmitted"><span>The batch has been Updated Successfully! </span></div>
+ 
+                <main class="main d-flex align-items-center">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-md-12 mx-auto">
+                        <div class="card mx-auto" style="margin-bottom: 0%">
+                          <div class="card-body p-3">
+                            <h5>Create New Batch</h5>
+                            <!-- <p class="text-muted">Create New faculty</p> -->
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="icon-user"></i></span>
+                              </div>
+                              <input type="text" class="form-control" placeholder="Batch Name" formControlName="batchName" required >
+                            
+                            </div>
+                               
+                          <!-- <div *ngIf="adminform.get('firstName').touched && adminform.get('firstName').invalid">
+                          <span class="style"> *First name is required </span></div> -->
+                          
+                             
+                              <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="icon-user"></i></span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Class"  formControlName="class">
+                              </div>  
+
+                            <div class="input-group mb-22">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="icon-chemistry"></i></span>
+                                </div>
+                                <div class="form-group col-sm-14">
+                                  <select class="form-control" id="subject" >
+                                    <option>Mathematics</option>
+                                    <option>Physics</option>
+                                    <option>Chemistry</option>
+                                    <option>Commerce</option>
+                                    <option>English</option>
+                                    <option>Banking</option>
+                                  </select>
+                                  </div>
+                                </div>
+                    
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </main>
+              
+             </form>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" (click)="myModal.hide()">Close</button>
+              <button type="submit" class="btn btn-primary"  (click)= "!isauthentication ? myModal.hide() : ''" >Save</button>
+            </div>
+
+           
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+
+
+    </div>
+  </div>
+</div>
+</div>
+<!--/.col-->
+
